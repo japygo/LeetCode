@@ -10,16 +10,16 @@
  * }
  */
 public class Solution {
-    Map<ListNode, Integer> map = new HashMap<>();
     public boolean hasCycle(ListNode head) {
-        if (head == null) {
-            return false;
+        ListNode slow = head;
+        ListNode fast = head;
+        while (fast != null && fast.next != null) {
+            slow = slow.next;
+            fast = fast.next.next;
+            if (slow == fast) {
+                return true;
+            }
         }
-        Integer val = map.get(head);
-        if (val != null) {
-            return true;
-        }
-        map.put(head, head.val);
-        return hasCycle(head.next);
+        return false;
     }
 }

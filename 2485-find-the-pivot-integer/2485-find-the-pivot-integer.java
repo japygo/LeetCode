@@ -1,23 +1,19 @@
 class Solution {
     public int pivotInteger(int n) {
-        int x = n;
-        while (x >= 0) {
-            int sum1 = 0;
-            for (int i = 1; i <= x; i++) {
-                sum1 += i;
-            }
+        int result = -1;
 
-            int sum2 = 0;
-            for (int i = x; i <= n; i++) {
-                sum2 += i;
-            }
-
-            if (sum1 == sum2) {
-                return x;
-            }
-            x -= 1;
+        int[] sum = new int[n + 1];
+        for (int i = 1; i <= n; i++) {
+            sum[i] = sum[i - 1] + i;
         }
 
-        return x;
+        for (int i = 1; i <= n; i++) {
+            if (sum[i] == sum[n] - sum[i] + i) {
+                result = i;
+                break;
+            }
+        }
+
+        return result;
     }
 }

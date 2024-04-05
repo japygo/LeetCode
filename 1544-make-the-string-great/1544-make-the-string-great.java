@@ -1,19 +1,17 @@
 class Solution {
     public String makeGood(String s) {
-        boolean isFinish = false;
+        StringBuilder result = new StringBuilder();
 
-        while (!isFinish) {
-            isFinish = true;
-            for (int i = 0; i < s.length() - 1; i++) {
-                if (s.charAt(i) != s.charAt(i + 1) && 
-                        Character.toLowerCase(s.charAt(i)) == Character.toLowerCase(s.charAt(i + 1))) {
-                    s = s.substring(0, i) + s.substring(i + 2);
-                    isFinish = false;
-                    break;
-                }
+        for (char c : s.toCharArray()) {
+            if (!result.isEmpty() &&
+                    c != result.charAt(result.length() - 1) &&
+                    Character.toLowerCase(c) == Character.toLowerCase(result.charAt(result.length() - 1))) {
+                result.deleteCharAt(result.length() - 1);
+            } else {
+                result.append(c);
             }
         }
 
-        return s;
+        return result.toString();
     }
 }

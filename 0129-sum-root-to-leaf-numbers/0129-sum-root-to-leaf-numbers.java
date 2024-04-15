@@ -14,30 +14,21 @@
  * }
  */
 class Solution {
-    int result;
-
     public int sumNumbers(TreeNode root) {
-        result = 0;
-        
-        recur(root, "");
-        
-        return result;
+        return recur(root, 0);
     }
     
-    private void recur(TreeNode node, String value) {
-        value += node.val;
+    private int recur(TreeNode node, int sum) {
+        if (node == null) {
+            return 0;
+        }
+
+        sum = sum * 10 + node.val;
 
         if (node.left == null && node.right == null) {
-            result += Integer.parseInt(value);
-            return;
+            return sum;
         }
 
-        if (node.left != null) {
-            recur(node.left, value);
-        }
-
-        if (node.right != null) {
-            recur(node.right, value);
-        }
+        return recur(node.left, sum) + recur(node.right, sum);
     }
 }

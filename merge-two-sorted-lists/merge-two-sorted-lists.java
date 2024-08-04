@@ -17,9 +17,16 @@ class Solution {
             return list1;
         }
         
-        ListNode head = new ListNode(-1);
-        ListNode tmp = head;
+        ListNode head;
+        if (list1.val <= list2.val) {
+            head = list1;
+            list1 = list1.next;
+        } else {
+            head = list2;
+            list2 = list2.next;
+        }
         
+        ListNode tmp = head;
         while (list1 != null && list2 != null) {
             if (list1.val <= list2.val) {
                 tmp.next = list1;
@@ -30,13 +37,8 @@ class Solution {
             }
             tmp = tmp.next;
         }
+        tmp.next = (list1 != null) ? list1 : list2;
         
-        if (list1 == null) {
-            tmp.next = list2;
-        } else {
-            tmp.next = list1;
-        }
-        
-        return head.next;
+        return head;
     }
 }

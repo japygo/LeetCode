@@ -15,7 +15,7 @@ class Solution {
         while (node != null) {
             if (node.child != null) {
                 Node child = node.child;
-                Node tmp = node.next;
+                Node next = node.next;
                 
                 node.next = child;
                 child.prev = node;
@@ -25,9 +25,9 @@ class Solution {
                     child = child.next;
                 }
                 
-                if (tmp != null) {
-                    child.next = tmp;
-                    tmp.prev = child;
+                if (next != null) {
+                    child.next = next;
+                    next.prev = child;
                 }
             }
             
